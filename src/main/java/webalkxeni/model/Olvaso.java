@@ -22,18 +22,19 @@ public class Olvaso {
 	private String nev;
 	@Column(name="lakcim")
 	private String lakcim;
-	@OneToMany(mappedBy="okodfk")
+	@OneToMany(mappedBy="olvaso")
 	private List<Kolcsonzes> kolcsonzes;
 		
 	protected Olvaso() {
 		
 	}
 
-	public Olvaso(int okod, String nev, String lakcim) {
+	public Olvaso(int okod, String nev, String lakcim, List<Kolcsonzes> kolcsonzes) {
 		super();
 		this.okod = okod;
 		this.nev = nev;
 		this.lakcim = lakcim;
+		this.kolcsonzes = kolcsonzes;
 	}
 
 	public int getOkod() {
@@ -112,7 +113,6 @@ public class Olvaso {
 	public String toString() {
 		return "Olvaso [okod=" + okod + ", nev=" + nev + ", lakcim=" + lakcim + ", kolcsonzes=" + kolcsonzes + "]";
 	}
-	
-	
 
+	
 }

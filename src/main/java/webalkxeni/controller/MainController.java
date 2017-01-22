@@ -32,7 +32,7 @@ public class MainController {
 	
 	@RequestMapping("/kolcsonzes")
 	public String kolcsonzesek(Model model) {
-		kolcsonManager.saveKolcsonzes(new Kolcsonzes(0, 5, new Date()));
+		//kolcsonManager.saveKolcsonzes();
 		List<Kolcsonzes> kolcsonzesek = kolcsonManager.getAllKolcsonzes();
 		model.addAttribute("kolcsonzesek", kolcsonzesek);
 		return "kolcsonzesek";
@@ -40,7 +40,7 @@ public class MainController {
 	
 	@RequestMapping("/olvaso")
 	public String olvasok(Model model) {
-		olvasoManager.saveOlvaso(new Olvaso(1, "valaki", "valahol"));
+		//olvasoManager.saveOlvaso();
 		List<Olvaso> olvasok = olvasoManager.getAllOlvaso();
 		model.addAttribute("olvasok", olvasok);
 		return "olvasok";
@@ -48,7 +48,7 @@ public class MainController {
 	
 	@RequestMapping("/konyv")
 	public String konyvek(Model model) {
-		konyvManager.saveKonyv(new Konyv(1, "asdasd", "qwerty"));
+		//konyvManager.saveKonyv(new Konyv(1, "asdasd", "qwerty"));
 		List<Konyv> konyvek = konyvManager.getAllKonyv();
 		model.addAttribute("konyvek", konyvek);
 		return "konyvek";

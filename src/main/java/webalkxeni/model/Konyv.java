@@ -3,6 +3,7 @@ package webalkxeni.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -21,17 +22,19 @@ public class Konyv {
 	@Column(name="cim")
 	private String cim;
 	@ManyToOne
-	private Kolcsonzes kolcsIDfk;
+	@JoinColumn(name="kolcsonzes_id", nullable = false)
+	private Kolcsonzes kolcsonzes;
 	
 	protected Konyv()  {
 		
 	}
 
-	public Konyv(int kkod, String szerzo, String cim) {
+	public Konyv(int kkod, String szerzo, String cim, Kolcsonzes kolcsonzes) {
 		super();
 		this.kkod = kkod;
 		this.szerzo = szerzo;
 		this.cim = cim;
+		this.kolcsonzes = kolcsonzes;
 	}
 
 	public int getKkod() {
@@ -58,12 +61,12 @@ public class Konyv {
 		this.cim = cim;
 	}
 
-	public Kolcsonzes getKolcsIDfk() {
-		return kolcsIDfk;
+	public Kolcsonzes getKolcsonzes() {
+		return kolcsonzes;
 	}
 
-	public void setKolcsIDfk(Kolcsonzes kolcsIDfk) {
-		this.kolcsIDfk = kolcsIDfk;
+	public void setKolcsonzes(Kolcsonzes kolcsonzes) {
+		this.kolcsonzes = kolcsonzes;
 	}
 
 	@Override
@@ -72,7 +75,7 @@ public class Konyv {
 		int result = 1;
 		result = prime * result + ((cim == null) ? 0 : cim.hashCode());
 		result = prime * result + kkod;
-		result = prime * result + ((kolcsIDfk == null) ? 0 : kolcsIDfk.hashCode());
+		result = prime * result + ((kolcsonzes == null) ? 0 : kolcsonzes.hashCode());
 		result = prime * result + ((szerzo == null) ? 0 : szerzo.hashCode());
 		return result;
 	}
@@ -93,10 +96,10 @@ public class Konyv {
 			return false;
 		if (kkod != other.kkod)
 			return false;
-		if (kolcsIDfk == null) {
-			if (other.kolcsIDfk != null)
+		if (kolcsonzes == null) {
+			if (other.kolcsonzes != null)
 				return false;
-		} else if (!kolcsIDfk.equals(other.kolcsIDfk))
+		} else if (!kolcsonzes.equals(other.kolcsonzes))
 			return false;
 		if (szerzo == null) {
 			if (other.szerzo != null)
@@ -108,7 +111,7 @@ public class Konyv {
 
 	@Override
 	public String toString() {
-		return "Konyv [kkod=" + kkod + ", szerzo=" + szerzo + ", cim=" + cim + ", kolcsIDfk=" + kolcsIDfk + "]";
+		return "Konyv [kkod=" + kkod + ", szerzo=" + szerzo + ", cim=" + cim + ", kolcsonzes=" + kolcsonzes + "]";
 	}
 
 	

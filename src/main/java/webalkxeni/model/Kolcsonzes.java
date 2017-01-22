@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -27,8 +28,9 @@ public class Kolcsonzes {
 	@Column(name="datum")
 	private Date datum;
 	@ManyToOne
-	private Olvaso okodfk;
-	@OneToMany(mappedBy="kolcsIDfk")
+	@JoinColumn(name="olvaso_id", nullable = false)
+	private Olvaso olvaso;
+	@OneToMany(mappedBy="kolcsonzes")
 	private List<Konyv> konyv;
 
 	
@@ -36,12 +38,13 @@ public class Kolcsonzes {
 		
 	}
 
-
-	public Kolcsonzes(int kolcsonzesID, int db, Date datum) {
+	public Kolcsonzes(int kolcsonzesID, int db, Date datum, Olvaso olvaso, List<Konyv> konyv) {
 		super();
 		this.kolcsonzesID = kolcsonzesID;
 		this.db = db;
 		this.datum = datum;
+		this.olvaso = olvaso;
+		this.konyv = konyv;
 	}
 
 
@@ -75,13 +78,13 @@ public class Kolcsonzes {
 	}
 
 
-	public Olvaso getOkodfk() {
-		return okodfk;
+	public Olvaso getOlvaso() {
+		return olvaso;
 	}
 
 
-	public void setOkodfk(Olvaso okodfk) {
-		this.okodfk = okodfk;
+	public void setOlvaso(Olvaso olvaso) {
+		this.olvaso = olvaso;
 	}
 
 
@@ -103,7 +106,7 @@ public class Kolcsonzes {
 		result = prime * result + db;
 		result = prime * result + kolcsonzesID;
 		result = prime * result + ((konyv == null) ? 0 : konyv.hashCode());
-		result = prime * result + ((okodfk == null) ? 0 : okodfk.hashCode());
+		result = prime * result + ((olvaso == null) ? 0 : olvaso.hashCode());
 		return result;
 	}
 
@@ -131,10 +134,10 @@ public class Kolcsonzes {
 				return false;
 		} else if (!konyv.equals(other.konyv))
 			return false;
-		if (okodfk == null) {
-			if (other.okodfk != null)
+		if (olvaso == null) {
+			if (other.olvaso != null)
 				return false;
-		} else if (!okodfk.equals(other.okodfk))
+		} else if (!olvaso.equals(other.olvaso))
 			return false;
 		return true;
 	}
@@ -142,10 +145,9 @@ public class Kolcsonzes {
 
 	@Override
 	public String toString() {
-		return "Kolcsonzes [kolcsonzesID=" + kolcsonzesID + ", db=" + db + ", datum=" + datum + ", okodfk=" + okodfk
+		return "Kolcsonzes [kolcsonzesID=" + kolcsonzesID + ", db=" + db + ", datum=" + datum + ", olvaso=" + olvaso
 				+ ", konyv=" + konyv + "]";
 	}
 	
 	
-
 }
