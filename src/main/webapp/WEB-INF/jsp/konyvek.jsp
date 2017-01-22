@@ -8,8 +8,12 @@
 <title>Webalk - Könyvek</title>
 </head>
 <body>
+<h2><a href="konyvForm">Új könyv felvitele</a></h2><br>
+<table border=1 width=50%>
+	<tr><th>ID</th><th>Szerző</th><th>Cím</th><th>Műveletek</th></tr>
 <c:forEach var="konyv" items="${konyvek}">
-	<p>${konyv.kkod}, ${konyv.szerzo}, ${konyv.cim} <br></p>
+		<tr><td>${konyv.kkod}</td><td>${konyv.szerzo}</td><td>${konyv.cim}</td><td><a href="konyvForm?id=${konyv.kkod}">Módosítás</a>, <a href="konyvDelete?id=${konyv.kkod}">Törlés</a></tr>
 </c:forEach>
+</table>
 </body>
 </html>

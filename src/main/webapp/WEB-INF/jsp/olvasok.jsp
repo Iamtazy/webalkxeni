@@ -8,8 +8,12 @@
 <title>Webalk - Olvasók</title>
 </head>
 <body>
+<h2><a href="olvasoForm">Új olvasó felvitele</a></h2><br>
+<table border=1 width=50%>
+	<tr><th>Olvasókód</th><th>Név</th><th>Lakcím</th><th>Műveletek</th></tr>
 <c:forEach var="olvaso" items="${olvasok}">
-	<p>${olvaso.okod}, ${olvaso.nev}, ${olvaso.lakcim} <br></p>
+		<tr><td>${olvaso.okod}</td><td>${olvaso.nev}</td><td>${olvaso.lakcim}</td><td><a href="olvasoForm?id=${olvaso.okod}">Módosítás</a>, <a href="olvasoDelete?id=${olvaso.okod}">Törlés</a></tr>
 </c:forEach>
+</table>
 </body>
 </html>

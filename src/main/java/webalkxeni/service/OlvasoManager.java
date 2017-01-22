@@ -19,6 +19,11 @@ public class OlvasoManager {
 		return this.olvasoRepo.save(olvaso);
 	}
 	
+	public Olvaso getOlvaso(int okod) {
+		Olvaso talaltOlvaso = olvasoRepo.findOne(okod);
+		return talaltOlvaso;
+	}
+	
 	public List<Olvaso> getAllOlvaso()
 	{
 		Iterable<Olvaso> it = this.olvasoRepo.findAll();
@@ -28,6 +33,10 @@ public class OlvasoManager {
 			lista.add(olvaso);
 		}
 		return lista;
+	}
+	
+	public void deleteOlvaso(int okod) {
+		olvasoRepo.delete(okod);
 	}
 
 }

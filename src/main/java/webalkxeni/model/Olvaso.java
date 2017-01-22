@@ -1,13 +1,15 @@
 package webalkxeni.model;
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
@@ -16,25 +18,25 @@ public class Olvaso {
 
 	@Id
 	@Column(name="okod", nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@NotNull
 	private int okod;
 	@Column(name="nev")
+	@NotEmpty
 	private String nev;
 	@Column(name="lakcim")
+	@NotEmpty
 	private String lakcim;
-	@OneToMany(mappedBy="olvaso")
-	private List<Kolcsonzes> kolcsonzes;
 		
 	protected Olvaso() {
 		
 	}
 
-	public Olvaso(int okod, String nev, String lakcim, List<Kolcsonzes> kolcsonzes) {
+	public Olvaso(int okod, String nev, String lakcim) {
 		super();
 		this.okod = okod;
 		this.nev = nev;
 		this.lakcim = lakcim;
-		this.kolcsonzes = kolcsonzes;
 	}
 
 	public int getOkod() {
@@ -61,19 +63,10 @@ public class Olvaso {
 		this.lakcim = lakcim;
 	}
 
-	public List<Kolcsonzes> getKolcsonzes() {
-		return kolcsonzes;
-	}
-
-	public void setKolcsonzes(List<Kolcsonzes> kolcsonzes) {
-		this.kolcsonzes = kolcsonzes;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((kolcsonzes == null) ? 0 : kolcsonzes.hashCode());
 		result = prime * result + ((lakcim == null) ? 0 : lakcim.hashCode());
 		result = prime * result + ((nev == null) ? 0 : nev.hashCode());
 		result = prime * result + okod;
@@ -89,11 +82,6 @@ public class Olvaso {
 		if (getClass() != obj.getClass())
 			return false;
 		Olvaso other = (Olvaso) obj;
-		if (kolcsonzes == null) {
-			if (other.kolcsonzes != null)
-				return false;
-		} else if (!kolcsonzes.equals(other.kolcsonzes))
-			return false;
 		if (lakcim == null) {
 			if (other.lakcim != null)
 				return false;
@@ -111,8 +99,8 @@ public class Olvaso {
 
 	@Override
 	public String toString() {
-		return "Olvaso [okod=" + okod + ", nev=" + nev + ", lakcim=" + lakcim + ", kolcsonzes=" + kolcsonzes + "]";
+		return "Olvaso [okod=" + okod + ", nev=" + nev + ", lakcim=" + lakcim + "]";
 	}
-
+	
 	
 }

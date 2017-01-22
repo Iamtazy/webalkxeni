@@ -19,6 +19,11 @@ public class KonyvManager {
 		return this.konyvRepo.save(konyv);
 	}
 	
+	public Konyv getKonyv(int kkod) {
+		Konyv talaltKonyv = konyvRepo.findOne(kkod);
+		return talaltKonyv;
+	}
+	
 	public List<Konyv> getAllKonyv()
 	{
 		Iterable<Konyv> it = this.konyvRepo.findAll();
@@ -28,6 +33,10 @@ public class KonyvManager {
 			lista.add(konyv);
 		}
 		return lista;
+	}
+	
+	public void deleteKonyv(int kkod) {
+		konyvRepo.delete(kkod);
 	}
 
 

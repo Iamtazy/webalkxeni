@@ -1,6 +1,5 @@
 package webalkxeni.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import webalkxeni.service.KonyvManager;
 import webalkxeni.service.OlvasoManager;
 
 @Controller
-public class MainController {
+public class IndexController {
 	
 	@Autowired
 	private KolcsonzesManager kolcsonManager;
@@ -25,14 +24,13 @@ public class MainController {
 	@Autowired
 	private KonyvManager konyvManager;
 	
-	@RequestMapping("/index")
+	@RequestMapping(value={"", "/", "/index"})
 	public String index() {
 		return "index";
 	}
 	
 	@RequestMapping("/kolcsonzes")
 	public String kolcsonzesek(Model model) {
-		//kolcsonManager.saveKolcsonzes();
 		List<Kolcsonzes> kolcsonzesek = kolcsonManager.getAllKolcsonzes();
 		model.addAttribute("kolcsonzesek", kolcsonzesek);
 		return "kolcsonzesek";
@@ -40,7 +38,6 @@ public class MainController {
 	
 	@RequestMapping("/olvaso")
 	public String olvasok(Model model) {
-		//olvasoManager.saveOlvaso();
 		List<Olvaso> olvasok = olvasoManager.getAllOlvaso();
 		model.addAttribute("olvasok", olvasok);
 		return "olvasok";
@@ -48,14 +45,9 @@ public class MainController {
 	
 	@RequestMapping("/konyv")
 	public String konyvek(Model model) {
-		//konyvManager.saveKonyv(new Konyv(1, "asdasd", "qwerty"));
 		List<Konyv> konyvek = konyvManager.getAllKonyv();
 		model.addAttribute("konyvek", konyvek);
 		return "konyvek";
 	}
 	
-	/*@RequestMapping("/kolcsonzesDelete")
-	public String kolcsonzesDelete(@ModelAttribute("kolcsonzes") Kolcsonzes kolcsonzes) {
-		
-	}*/
 }

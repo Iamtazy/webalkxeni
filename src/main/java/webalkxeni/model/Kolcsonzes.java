@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,16 +22,16 @@ public class Kolcsonzes {
 	@Id
 	@Column(name="kolcsonzesID", nullable = false)
 	@NotNull
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int kolcsonzesID;
 	@Column(name="db")
 	private int db;
 	@Column(name="datum")
 	private Date datum;
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@JoinColumn(name="olvaso_id", nullable = false)
 	private Olvaso olvaso;
-	@OneToMany(mappedBy="kolcsonzes")
+	@OneToMany
 	private List<Konyv> konyv;
 
 	
