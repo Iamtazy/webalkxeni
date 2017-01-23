@@ -15,5 +15,6 @@
 		<tr><td>${konyv.kkod}</td><td>${konyv.szerzo}</td><td>${konyv.cim}</td><td><a href="konyvForm?id=${konyv.kkod}">Módosítás</a>, <a href="konyvDelete?id=${konyv.kkod}">Törlés</a></tr>
 </c:forEach>
 </table>
+<h4><a href="/index">Vissza</a></h4><br>
 </body>
 </html>

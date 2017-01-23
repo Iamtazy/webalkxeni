@@ -1,17 +1,21 @@
 package webalkxeni.controller;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import webalkxeni.model.Kolcsonzes;
 import webalkxeni.model.Konyv;
 import webalkxeni.model.Olvaso;
-import webalkxeni.persist.KonyvRepository;
+import webalkxeni.service.KolcsonzesManager;
 import webalkxeni.service.KonyvManager;
 import webalkxeni.service.OlvasoManager;
 
@@ -22,6 +26,8 @@ public class InsertController {
 	private KonyvManager konyvManager;
 	@Autowired
 	private OlvasoManager olvasoManager;
+	@Autowired
+	private KolcsonzesManager kolcsonManager;
 	
 	@RequestMapping("/konyvForm")
 	public String konyvForm(@RequestParam(required=false) Integer id, @ModelAttribute("konyv") Konyv konyv) {
@@ -67,6 +73,30 @@ public class InsertController {
 			return "olvasoform";
 		olvasoManager.saveOlvaso(o);	
 		return "redirect:/olvaso";
+	}
+	
+	@RequestMapping("/kolcsonzesForm")
+	public String kolcsonzesForm(@RequestParam(required=false) Integer id, @ModelAttribute("kolcsonzes") Kolcsonzes kolcsonzes, Model model) {
+		if (id == null) {
+			kolcsonzes.setDatum(null);
+			kolcsonzes.setOlvaso(null);
+			model.addAttribute("konyvek", konyvManager.getAllKonyv());
+		} else {
+			Kolcsonzes k = kolcsonManager.getKolcsonzes(id);
+			kolcsonzes.setKolcsonzesID(k.getKolcsonzesID());
+			kolcsonzes.setDb(k.getDb());
+			kolcsonzes.setDatum(k.getDatum());
+			kolcsonzes.setOlvaso(k.getOlvaso());
+			model.addAttribute("konyvek", konyvManager.getAllKonyv());
+		}
+		return "kolcsonzesform";
+	}
+	
+	@RequestMapping("/insertKolcsonzes")
+	public String insertKolcsonzes(@Valid @ModelAttribute("kolcsonzes") Kolcsonzes k, BindingResult bindingRes) {
+		if (bindingRes.hasErrors())
+			return "redirect:/kolcsonzesForm";
+		return "";
 	}
 
 }

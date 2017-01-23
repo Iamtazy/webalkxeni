@@ -15,5 +15,6 @@
 		<tr><td>${olvaso.okod}</td><td>${olvaso.nev}</td><td>${olvaso.lakcim}</td><td><a href="olvasoForm?id=${olvaso.okod}">Módosítás</a>, <a href="olvasoDelete?id=${olvaso.okod}">Törlés</a></tr>
 </c:forEach>
 </table>
+<h4><a href="/index">Vissza</a></h4><br>
 </body>
 </html>

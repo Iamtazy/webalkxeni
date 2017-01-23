@@ -10,7 +10,7 @@
 </head>
 <body>
 <form:form action="/insertOlvaso" method="post" modelAttribute="olvaso">
-Olvasókód: <input type="number" name="okod" readonly value="${olvaso.okod}"/>  (Ha nem módosítás, automatikusan generált!)<br>
+Olvasókód: <input type="number" name="okod" readonly value="${olvaso.okod}"/>  (Ha új felvitel, automatikusan generált!)<br>
 Név: <form:input type="text" path="nev"/><form:errors path='nev'/><br>
 Lakcím: <form:input type="text" path="lakcim"/><form:errors path='lakcim'/><br>
 <input type="submit" value="OK"/>

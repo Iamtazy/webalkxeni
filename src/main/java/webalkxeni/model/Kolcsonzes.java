@@ -25,13 +25,17 @@ public class Kolcsonzes {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int kolcsonzesID;
 	@Column(name="db")
+	@NotNull
 	private int db;
 	@Column(name="datum")
+	@NotNull
 	private Date datum;
 	@ManyToOne(optional = false)
 	@JoinColumn(name="olvaso_id", nullable = false)
+	@NotNull
 	private Olvaso olvaso;
 	@OneToMany
+	@NotNull
 	private List<Konyv> konyv;
 
 	
