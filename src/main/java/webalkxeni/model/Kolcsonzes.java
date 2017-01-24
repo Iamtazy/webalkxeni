@@ -35,7 +35,7 @@ public class Kolcsonzes {
 	@ManyToOne(optional = false)
 	@JoinColumn(name="olvaso_id", nullable = false)
 	private Olvaso olvaso;
-	@OneToMany(cascade = CascadeType.REFRESH)
+	@OneToMany(cascade = CascadeType.DETACH)
 	private List<Konyv> konyvek;
 
 	

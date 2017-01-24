@@ -1,12 +1,13 @@
 package webalkxeni.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import webalkxeni.model.Konyv;
 
 @Component
-public class KonyvConverter implements org.springframework.core.convert.converter.Converter<Integer, Konyv> {
+public class KonyvConverter implements Converter<Integer, Konyv> {
 
 	@Autowired
 	private KonyvManager konyvManager;

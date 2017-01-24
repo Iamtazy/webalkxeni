@@ -1,7 +1,5 @@
 package webalkxeni.controller;
 
-import java.util.Date;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -10,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -99,8 +96,7 @@ public class InsertController {
 	@RequestMapping("/insertKolcsonzes")
 	public String insertKolcsonzes(@Valid @ModelAttribute("kolcsonzes") Kolcsonzes k, BindingResult bindingRes, Model model) {
 		if (bindingRes.hasErrors()) {
-			System.out.println(k.toString());
-			return "kolcsonzesForm";
+			return "redirect:/kolcsonzesForm";
 		}
 		kolcsonManager.saveKolcsonzes(k);
 		return "redirect:/kolcsonzes";

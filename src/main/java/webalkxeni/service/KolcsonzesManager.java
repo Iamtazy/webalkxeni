@@ -18,10 +18,6 @@ public class KolcsonzesManager {
 	
 	@Autowired
 	private KolcsonzesRepository kolcsonRepo;
-	@Autowired
-	private OlvasoRepository olvasoRepo;
-	@Autowired
-	private KonyvRepository konyvRepo;
 	
 	public Kolcsonzes saveKolcsonzes(Kolcsonzes kolcsonzes) {
 		return this.kolcsonRepo.save(kolcsonzes);

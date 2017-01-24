@@ -98,7 +98,7 @@ public class Konyv {
 
 	@Override
 	public String toString() {
-		return "Konyv [kkod=" + kkod + ", szerzo=" + szerzo + ", cim=" + cim + "]";
+		return "Könyv kódja: " + kkod + ", szerzője: " + szerzo + ", címe: " + cim;
 	}
 	
 	
