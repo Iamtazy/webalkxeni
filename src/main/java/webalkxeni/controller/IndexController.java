@@ -26,6 +26,9 @@ public class IndexController {
 	
 	@RequestMapping(value={"", "/", "/index"})
 	public String index() {
+		olvasoManager.saveOlvaso(new Olvaso(1, "asd", "dsa"));
+		konyvManager.saveKonyv(new Konyv(1, "a", "b"));
+		konyvManager.saveKonyv(new Konyv(2, "b", "c"));
 		return "index";
 	}
 	

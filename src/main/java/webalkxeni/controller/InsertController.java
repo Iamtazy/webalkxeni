@@ -1,6 +1,7 @@
 package webalkxeni.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -78,6 +80,8 @@ public class InsertController {
 	@RequestMapping("/kolcsonzesForm")
 	public String kolcsonzesForm(@RequestParam(required=false) Integer id, @ModelAttribute("kolcsonzes") Kolcsonzes kolcsonzes, Model model) {
 		if (id == null) {
+			kolcsonzes.setKolcsonzesID(0);
+			kolcsonzes.setDb(0);
 			kolcsonzes.setDatum(null);
 			kolcsonzes.setOlvaso(null);
 			model.addAttribute("konyvek", konyvManager.getAllKonyv());
@@ -93,10 +97,13 @@ public class InsertController {
 	}
 	
 	@RequestMapping("/insertKolcsonzes")
-	public String insertKolcsonzes(@Valid @ModelAttribute("kolcsonzes") Kolcsonzes k, BindingResult bindingRes) {
-		if (bindingRes.hasErrors())
-			return "redirect:/kolcsonzesForm";
-		return "";
+	public String insertKolcsonzes(@Valid @ModelAttribute("kolcsonzes") Kolcsonzes k, BindingResult bindingRes, Model model) {
+		if (bindingRes.hasErrors()) {
+			System.out.println(k.toString());
+			return "kolcsonzesForm";
+		}
+		kolcsonManager.saveKolcsonzes(k);
+		return "redirect:/kolcsonzes";
 	}
 
 }

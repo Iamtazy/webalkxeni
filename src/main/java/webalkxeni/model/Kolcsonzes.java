@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 
@@ -25,31 +26,29 @@ public class Kolcsonzes {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int kolcsonzesID;
 	@Column(name="db")
-	@NotNull
+	@Min(value=1)
 	private int db;
 	@Column(name="datum")
 	@NotNull
 	private Date datum;
 	@ManyToOne(optional = false)
 	@JoinColumn(name="olvaso_id", nullable = false)
-	@NotNull
 	private Olvaso olvaso;
 	@OneToMany
-	@NotNull
-	private List<Konyv> konyv;
+	private List<Konyv> konyvek;
 
 	
 	protected Kolcsonzes() {
 		
 	}
 
-	public Kolcsonzes(int kolcsonzesID, int db, Date datum, Olvaso olvaso, List<Konyv> konyv) {
+	public Kolcsonzes(int kolcsonzesID, int db, Date datum, Olvaso olvaso, List<Konyv> konyvek) {
 		super();
 		this.kolcsonzesID = kolcsonzesID;
 		this.db = db;
 		this.datum = datum;
 		this.olvaso = olvaso;
-		this.konyv = konyv;
+		this.konyvek = konyvek;
 	}
 
 
@@ -93,13 +92,13 @@ public class Kolcsonzes {
 	}
 
 
-	public List<Konyv> getKonyv() {
-		return konyv;
+	public List<Konyv> getKonyvek() {
+		return konyvek;
 	}
 
 
-	public void setKonyv(List<Konyv> konyv) {
-		this.konyv = konyv;
+	public void setKonyvek(List<Konyv> konyvek) {
+		this.konyvek = konyvek;
 	}
 
 
@@ -110,7 +109,7 @@ public class Kolcsonzes {
 		result = prime * result + ((datum == null) ? 0 : datum.hashCode());
 		result = prime * result + db;
 		result = prime * result + kolcsonzesID;
-		result = prime * result + ((konyv == null) ? 0 : konyv.hashCode());
+		result = prime * result + ((konyvek == null) ? 0 : konyvek.hashCode());
 		result = prime * result + ((olvaso == null) ? 0 : olvaso.hashCode());
 		return result;
 	}
@@ -134,10 +133,10 @@ public class Kolcsonzes {
 			return false;
 		if (kolcsonzesID != other.kolcsonzesID)
 			return false;
-		if (konyv == null) {
-			if (other.konyv != null)
+		if (konyvek == null) {
+			if (other.konyvek != null)
 				return false;
-		} else if (!konyv.equals(other.konyv))
+		} else if (!konyvek.equals(other.konyvek))
 			return false;
 		if (olvaso == null) {
 			if (other.olvaso != null)
@@ -151,7 +150,7 @@ public class Kolcsonzes {
 	@Override
 	public String toString() {
 		return "Kolcsonzes [kolcsonzesID=" + kolcsonzesID + ", db=" + db + ", datum=" + datum + ", olvaso=" + olvaso
-				+ ", konyv=" + konyv + "]";
+				+ ", konyvek=" + konyvek + "]";
 	}
 	
 	

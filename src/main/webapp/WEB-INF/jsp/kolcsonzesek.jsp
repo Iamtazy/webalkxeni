@@ -16,6 +16,6 @@
 			<a href="kolcsonzesDelete?id=${kolcsonzes.kolcsonzesID}">Törlés</a></tr>
 </c:forEach>
 </table><br>
-<h4><a href="/index">Vissza</a></h4><br>
+<h4><a href="index">Vissza</a></h4><br>
 </body>
 </html>
