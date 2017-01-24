@@ -10,7 +10,7 @@
 </head>
 <body>
 <form:form action="/insertKolcsonzes" method="post" modelAttribute="kolcsonzes">
-Kölcsönzés kód: <input type="number" name="kolcsonzesID" readonly value="0"/>  (Ha új felvitel, automatikusan generált!)<br>
+Kölcsönzés kód: <input type="number" name="kolcsonzesID" readonly value="${kolcsonzes.kolcsonzesID}"/>  (Ha új felvitel, automatikusan generált!)<br>
 Db: <form:input type="text" path="db"/><form:errors path='db'/><br>
 Dátum: <form:input type="date" path="datum"/><form:errors path='datum'/><br>
 Olvasó kód: <form:input type="number" path="olvaso"/><form:errors path='olvaso'/><br>

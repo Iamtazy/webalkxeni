@@ -3,6 +3,7 @@ package webalkxeni.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ public class Kolcsonzes {
 	@ManyToOne(optional = false)
 	@JoinColumn(name="olvaso_id", nullable = false)
 	private Olvaso olvaso;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.REFRESH)
 	private List<Konyv> konyvek;
 
 	

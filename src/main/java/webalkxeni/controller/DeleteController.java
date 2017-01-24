@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import webalkxeni.service.KolcsonzesManager;
 import webalkxeni.service.KonyvManager;
 import webalkxeni.service.OlvasoManager;
 
@@ -15,6 +16,8 @@ public class DeleteController {
 	private KonyvManager konyvManager;
 	@Autowired
 	private OlvasoManager olvasoManager;
+	@Autowired
+	private KolcsonzesManager kolcsonManager;
 	
 	@RequestMapping("/konyvDelete")
 	public String konyvDelete(@RequestParam(required=true) Integer id) {
@@ -26,6 +29,12 @@ public class DeleteController {
 	public String olvasoDelete(@RequestParam(required=true) Integer id){
 		olvasoManager.deleteOlvaso(id);
 		return "redirect:/olvaso";
+	}
+	
+	@RequestMapping("/kolcsonzesDelete")
+	public String kolcsonzesDelete(@RequestParam(required=true) Integer id){
+		kolcsonManager.deleteById(id);
+		return "redirect:/kolcsonzes";
 	}
 
 }
