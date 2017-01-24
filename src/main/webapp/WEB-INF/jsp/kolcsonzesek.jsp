@@ -10,7 +10,7 @@
 <body>
 <h2><a href="kolcsonzesForm">Új kölcsönzés felvitele</a></h2><br>
 <table border=1 width=50%>
-	<tr><th>ID</th><th>Db</th><th>Dátum</th><th>Műveletek</th></tr>
+	<tr><th>ID</th><th>DB</th><th>Dátum</th><th>Olvasó</th><th>Könyvek</th><th>Műveletek</th></tr>
 <c:forEach var="kolcsonzes" items="${kolcsonzesek}">
 		<tr><td>${kolcsonzes.kolcsonzesID}</td><td>${kolcsonzes.db}</td><td>${kolcsonzes.datum}</td><td><a href="kolcsonzesForm?id=${kolcsonzes.kolcsonzesID}">Módosítás</a>, 
 			<a href="kolcsonzesDelete?id=${kolcsonzes.kolcsonzesID}">Törlés</a></tr>

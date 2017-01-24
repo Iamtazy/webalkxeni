@@ -102,6 +102,8 @@ public class InsertController {
 			System.out.println(k.toString());
 			return "kolcsonzesForm";
 		}
+		if (kolcsonManager.getKolcsonzes(k.getKolcsonzesID()) != null)
+			kolcsonManager.deleteById(k.getKolcsonzesID());
 		kolcsonManager.saveKolcsonzes(k);
 		return "redirect:/kolcsonzes";
 	}
